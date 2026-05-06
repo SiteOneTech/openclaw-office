@@ -1,0 +1,21 @@
+# Local editor/runtime state
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Nested repositories managed separately
+mirofish-original-ai-forecast/
+
+# Local secrets / runtime state
+.env
+*.env
+*.secret
+*.key
+*.pem
+state.db
+sessions/
+logs/
+backups/
+
