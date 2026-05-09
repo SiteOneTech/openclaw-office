@@ -1,0 +1,3 @@
+cd ~/gcloud-office
+git pull --ff-only origin main
+BRANCH=miami PAIRING_API_URL=http://openclaw-hq:8781 bash scripts/refresh-pairing-request.sh
