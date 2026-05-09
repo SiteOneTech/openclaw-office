@@ -73,8 +73,8 @@ Esta sección evita la confusión vista al alinear Miami: hay **tres nombres par
 | Concepto | Fuente canónica | Se guarda en DB | Se materializa en ENV | Uso |
 | --- | --- | --- | --- | --- |
 | `branch_id` / `node_id` | Clave `branches.<id>` y `node_id` en `FLEET.local.yml` | Sí, como `branch_nodes.branch_id` / `node_id` | No, salvo variables operativas como `OPENCLAW_BRANCH` | Identidad técnica: `miami`, `sicilia`; debe coincidir con `target.branch`, `DELEGATE_BRANCH`, perfil OpenClaw y nombres de servicios. |
-| `display_name` | `branches.<id>.display_name` en FLEET | Sí, como `branch_nodes.display_name` | Solo fallback | Nombre humano corto de la sucursal. |
-| `branch_label` visual de Office | `branches.<id>.office.branch_label` en FLEET | Sí, dentro de `branch_nodes.metadata.office.branch_label` | Sí, como `VITE_BRANCH_LABEL` en `.env.production` generado | Etiqueta visible en OpenClaw Office custom, por ejemplo `Sucursal Miami`. |
+| `display_name` | `branches.<id>.display_name` en FLEET | Sí, como `branch_nodes.display_name` | Sí, como `VITE_BRANCH_LABEL` en `.env.production` generado | Nombre humano canónico de la sucursal. El neon debe mostrar `SITIOUNO OFFICE - {DISPLAY_NAME}`, por ejemplo `SITIOUNO OFFICE - MIAMI`. |
+| `branch_label` visual de Office | Alias legado en `branches.<id>.office.branch_label` | Sí, dentro de `branch_nodes.metadata.office.branch_label` si existe | Solo compatibilidad | Debe coincidir con `display_name`; no usar `Sucursal Miami` si `display_name` es `Miami`. |
 | `KASPAR_BRANCH_COORDINATOR_LABEL` | ENV del MCP local de sucursal | No | Sí, en el entorno del MCP | Texto usado solo en `advisor_consult` para decir quién consulta al asesor; no cambia la UI ni el registry. |
 
 Flujo correcto para la etiqueta visual:
@@ -89,7 +89,7 @@ Flujo correcto para la etiqueta visual:
        coordinator_agent_id: murphy
        office:
          title: "SitioUno Office"
-         branch_label: "Sucursal Miami"
+         branch_label: "Miami" # opcional/legado; debe coincidir con display_name
    ```
 
 2. El nodo publica ese bloque al registry:

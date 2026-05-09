@@ -2,8 +2,8 @@
 
 | Campo   | Valor        |
 | ------- | ------------ |
-| Versión | 1.0.1        |
-| Fecha   | 2026-05-05   |
+| Versión | 1.0.2        |
+| Fecha   | 2026-05-07   |
 | Perfil  | `sicilia`    |
 | OpenClaw CLI | 2026.4.21 |
 
@@ -48,6 +48,12 @@ openclaw --profile sicilia doctor
 
 La etiqueta visual de la sucursal **no** se define manualmente en el Office ni por `KASPAR_BRANCH_COORDINATOR_LABEL`.
 
+Regla canónica de presentación:
+
+```text
+SITIOUNO OFFICE - SICILIA
+```
+
 Fuente canónica:
 
 ```yaml
@@ -57,18 +63,18 @@ branches:
     node_id: sicilia
     office:
       title: "SitioUno Office"
-      branch_label: "Sucursal Sicilia"
+      branch_label: "Sicilia" # opcional/legado; debe coincidir con display_name
 ```
 
 Flujo aplicado:
 
-1. `FLEET.local.yml` define `branches.sicilia.office.branch_label`.
-2. `publish_branch_registry.py` publica ese bloque a `branch_nodes.metadata.office` en el registry.
+1. `FLEET.local.yml` define `branches.sicilia.display_name`.
+2. `publish_branch_registry.py` publica `display_name` a `branch_nodes.display_name` y normaliza `metadata.office.branch_label`.
 3. `sync_node_from_registry.py` lee el registry y genera `.env.production` para el Office custom:
 
    ```bash
    VITE_OFFICE_TITLE=SitioUno Office
-   VITE_BRANCH_LABEL=Sucursal Sicilia
+   VITE_BRANCH_LABEL=Sicilia
    ```
 
 4. El Office custom debe reconstruirse/reiniciarse para que Vite compile esos valores.
@@ -88,4 +94,4 @@ Variables separadas que suelen confundirse:
 
 ---
 
-*Changelog: 1.0.1 — aclara fuente de `branch_label`, registry y ENV generado. 1.0.0 — registro inicial post-onboard automatizado.*
+*Changelog: 1.0.2 — alinea el neon con `SITIOUNO OFFICE - SICILIA` y `branch_nodes.display_name`. 1.0.1 — aclara fuente de `branch_label`, registry y ENV generado. 1.0.0 — registro inicial post-onboard automatizado.*

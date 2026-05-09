@@ -6,7 +6,7 @@ Esta sucursal **no tiene GPU** → todos los agentes usan modelos cloud (Anthrop
 
 > **Nota de alineación 2026-05-05:** este prompt conserva el onboarding original de Sicilia, pero el patrón actual validado para nodos nuevos está en `~/gcloud-office/README-NODOS-IA.md` y `~/gcloud-office/openclaw-office/docs/09-RUNBOOK-NUEVOS-NODOS.md`. Para Miami u otra sucursal, usar esos runbooks como fuente principal. En particular:
 >
-> - La etiqueta visual del Office (`VITE_BRANCH_LABEL`) viene de `branches.<branch>.office.branch_label` en `FLEET.local.yml`, se publica al registry SQL y se genera en `.env.production` con `sync_node_from_registry.py`.
+> - La etiqueta visual del Office (`VITE_BRANCH_LABEL`) viene de `branches.<branch>.display_name` en `FLEET.local.yml`, se publica al registry SQL como `branch_nodes.display_name` y se genera en `.env.production` con `sync_node_from_registry.py`. El neon debe verse como `SITIOUNO OFFICE - {DISPLAY_NAME}`.
 > - `KASPAR_BRANCH_COORDINATOR_LABEL` no es la etiqueta del Office; solo nombra al coordinador dentro del prompt de `advisor_consult`.
 > - En OpenClaw 2026.4.21, los proveedores LLM deben quedar en un env local `0600` cargado por los servicios; no asumir que un `.env` vacío basta para arrancar si hay `SecretRef` activos.
 > - Para nodos fuera de VPC, `~/.config/kaspar-registry.env` debe contener `KASPAR_REGISTRY_BASE_URL` y `KASPAR_REGISTRY_API_TOKEN`; si falta, `publish_branch_registry.py` / `sync_node_from_registry.py` reportan `registry API env missing`.
@@ -260,7 +260,7 @@ openclaw --profile sicilia mcp set sicilia-tools '{
 Notas técnicas:
 - `KASPAR_SERVER_MODE="sicilia"` (o `miami` / `branch`) activa el modo **sucursal**: sin `council`/`shadow`, con `advisor_consult` hacia el agente de `KASPAR_ADVISOR_AGENT` (en Sicilia: **seneca**).
 - `KASPAR_BRANCH_COORDINATOR_LABEL` (opcional) fija el nombre en el prompt al invocar al asesor; por defecto: Cesar en `sicilia`, Murphy en `miami`. **No** controla la etiqueta visual del Office.
-- La etiqueta visual del Office se define en `FLEET.local.yml` bajo `branches.<branch>.office.branch_label`, se publica con `publish_branch_registry.py`, se lee desde SQL con `sync_node_from_registry.py` y termina como `VITE_BRANCH_LABEL` en `.env.production`.
+- La etiqueta visual del Office se define en `FLEET.local.yml` bajo `branches.<branch>.display_name`, se publica con `publish_branch_registry.py`, se lee desde SQL con `sync_node_from_registry.py` y termina como `VITE_BRANCH_LABEL` en `.env.production`. `branches.<branch>.office.branch_label` es alias legado y debe coincidir con `display_name`.
 - Registro de flota (opcional): en el `mcp set` añadí `KASPAR_REGISTRY_BASE_URL` (URL de Cloud Run) y `KASPAR_REGISTRY_API_TOKEN` (Secret `fleet-registry-api-token`) **solo** si no usás DSN; ver en el clon de **gcloud-office**: `scripts/deploy-fleet-registry-api.sh`, `env/kaspar-registry.env.example` y el índice de documentación en `openclaw-office/docs/INDEX.md`.
 - Si el operador no tiene `FLEET.local.yml` de Sicilia todavía, crealo con una estructura mínima:
 ```bash
