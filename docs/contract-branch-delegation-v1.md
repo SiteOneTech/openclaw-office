@@ -39,6 +39,11 @@ Un único **JSON** de petición/respuesta entre **Kaspar (cliente en HQ o proces
 | `input` | string | sí | Texto de la tarea (Kaspar puede prefijar `TASK-ID` / `PHASE`). |
 | `deadline_s` | integer | sí | 5..600, acorde a `openclaw` agent timeout. |
 | `max_output_bytes` | integer | no | Tope de salida en carácteres/bytes (implementación nodo). |
+| `async` | boolean | no | Si es `true`, el receptor responde rápido con `202 accepted` y ejecuta el turno en background. Recomendado para trabajos de Factory, OpenHands, QA o tareas de más de 30s. |
+| `mode` | string | no | Alias operativo; `async`, `background`, `queue` y `queued` activan ejecución en background. |
+| `project_id` | string | no | ID operativo cuando la tarea pertenece a un proyecto Factory. El receptor lo propaga al Kanban local. |
+| `initiative_id` | string | no | ID de iniciativa estratégica; por defecto puede coincidir con `project_id`. |
+| `metadata` | object | no | Metadata no sensible. Para proyectos Factory puede incluir `canonical_factory_project=true`, `repo_name`, `project_slug`, `preview_url_expected` y `stage_order`. |
 
 **Ejemplo:**
 
@@ -50,7 +55,16 @@ Un único **JSON** de petición/respuesta entre **Kaspar (cliente en HQ o proces
   "target": { "branch": "sicilia", "agent_id": "cesar" },
   "input": "TASK-ID: 550e…\nPHASE: delegate.hq\n---\nResumí el estado del workspace.",
   "deadline_s": 120,
-  "max_output_bytes": 262144
+  "max_output_bytes": 262144,
+  "async": true,
+  "mode": "async",
+  "project_id": "factory-example-001",
+  "initiative_id": "factory-example-001",
+  "metadata": {
+    "canonical_factory_project": true,
+    "repo_name": "factory-su-example",
+    "preview_url_expected": "https://kidu.app/p/example/"
+  }
 }
 ```
 
@@ -60,14 +74,14 @@ Un único **JSON** de petición/respuesta entre **Kaspar (cliente en HQ o proces
 
 | Campo | Tipo | Notas |
 | --- | --- | --- |
-| `status` | string | `ok` \| `error` \| `timeout` \| `rejected` \| `idempotent_replay` |
+| `status` | string | `accepted` \| `ok` \| `error` \| `timeout` \| `rejected` \| `idempotent_replay` |
 | `output` | string | Salida del agente (texto) |
 | `stderr` | string | Opcional, si hubo flujo a stderr (no se incluyen secretos) |
 | `duration_s` | number | |
-| `metadata` | object | Claves libres **sin** credenciales (p. ej. `branch`, `agent_id`, `openclaw_exit_code`) |
+| `metadata` | object | Claves libres **sin** credenciales (p. ej. `branch`, `agent_id`, `openclaw_exit_code`, `task_status_url`, `kanban_url`) |
 | `error` | string | Si `status` es `error` / `rejected` |
 
-Códigos HTTP: `200` cuerpo presente; `400` cuerpo inválido; `401/403` auth; `409` idempotencia conflictiva; `502` upsteam agent falló; `504` timeout.
+Códigos HTTP: `202` tarea aceptada async; `200` cuerpo presente; `400` cuerpo inválido; `401/403` auth; `409` idempotencia conflictiva; `502` upstream agent falló; `504` timeout.
 
 ---
 
