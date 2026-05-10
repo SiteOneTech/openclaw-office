@@ -1,0 +1,30 @@
+{
+  "metrics": {
+    "activeAgents": "Active Agents",
+    "totalTokens": "Total Tokens",
+    "collaboration": "Collaboration",
+    "tokenRate": "Token Rate",
+    "tokenRateUnit": "/min",
+    "costLabel": "Total Cost",
+    "tabs": {
+      "overview": "Overview",
+      "trend": "Trend",
+      "topology": "Topology",
+      "activity": "Activity"
+    }
+  },
+  "agentDetail": {
+    "deselect": "Deselect",
+    "toolCallHistory": "Tool Call History"
+  },
+  "eventTimeline": {
+    "newEvents": "New events ↓"
+  },
+  "tokenChart": {
+    "total": "Total:",
+    "totalLine": "Total"
+  },
+  "activityHeatmap": {
+    "eventsUnit": "events"
+  }
+}

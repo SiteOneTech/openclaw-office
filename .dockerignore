@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build artifacts (will be built inside Docker)
+dist/
+
+# Dev / test outputs
+output/
+coverage/
+.nyc_output/
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Env files (never bake credentials into images)
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# CI / scripts that are not needed at runtime
+scripts/
+tests/
+docs/
+openspec/
+assets/
+public/icons/
+__tests__/
+*.test.ts
+*.spec.ts
+vitest.config.*
+
+# Misc
+README*.md
+CHANGELOG.md
+DEPLOY.md
+LICENSE

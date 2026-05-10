@@ -1,35 +1,66 @@
-# OpenClaw Office Sicilia
+# OpenClaw Office
 
-Operational workspace for the OpenClaw/Sitio Uno Sicilia office node.
+OpenClaw Office is the SitioUno graphical/product fork of the OpenClaw Office
+frontend. It provides the reusable office UI surface used by local node
+implementations, without making any single node the source of truth.
 
-This repository records the office-level documentation, onboarding notes, Hermes/Zeus
-fleet tooling, and delegation contracts used to connect Sicilia with the Sitio Uno
-agent network.
+This repository owns:
 
-## Contents
+- React/Vite source for the visual office, console, chat workspace, and related
+  frontend services.
+- Office assets, i18n, tests, CLI/service helpers, and local app packaging.
+- Product-level integration surfaces such as local tunnels, Branch Kanban UI,
+  setup/admin views, and runtime configuration hooks.
 
-- `SICILIA-NODE.md` - current Sicilia node state and known corrections.
-- `HERMES-NODE.md` - Zeus/Hermes GCP node notes.
-- `MIROFISH-NODE.md` - MiroFish simulator node notes.
-- `docs/` - delegation contract, gateway research, branch registration roadmap,
-  and implementation plans.
-- `hermes-config/SOUL.md` - Zeus identity/persona reference used before the
-  dedicated Hermes repo archival.
-- `hermes-openclaw-tools/` - OpenClaw fleet MCP tooling snapshot.
-- `onboard-sicilia-prompt.md` - onboarding plan/prompt for provisioning Sicilia.
+This repository should stay node-agnostic. Sicilia, Miami, Hermes/Zeus,
+MiroFish, and Factory deployments are implementations or consumers of this
+office surface, not the identity of this fork.
 
-## Separate Repositories
+## Domain Boundaries
 
-The MiroFish application lives in its own repository and is intentionally ignored
-here:
+See [SITIOUNO-REPO-MAP.md](SITIOUNO-REPO-MAP.md) for the canonical ownership
+map. In short:
 
-- `SiteOneTech/mirofish-original-ai-forecast`
+- UI/product changes to OpenClaw Office belong here.
+- Infrastructure, registry, MCP routing, fleet configuration, node runbooks, and
+  per-node secrets belong in `gcloud-office`.
+- Software Factory capabilities belong in `sitiouno-software-factory-ai`.
+- Hermes/Zeus runtime implementation belongs in `hermes-agent`.
+- MiroFish product code belongs in `mirofish-original-ai-forecast`.
 
-Do not vendor the nested MiroFish checkout into this repository.
+## Running From Source
+
+Requirements:
+
+- Node.js 22+
+- pnpm
+
+```bash
+pnpm install
+pnpm dev
+```
+
+For production validation:
+
+```bash
+pnpm build
+```
+
+## Local Runtime Configuration
+
+Node-specific values should come from local configuration, the fleet registry,
+or environment variables. Do not hardcode branch names, agent inventories,
+provider credentials, tunnel endpoints, or node identities in React source.
+
+Useful references:
+
+- [README.en.md](README.en.md) - upstream product documentation.
+- [NODE_ONBOARDING.md](NODE_ONBOARDING.md) - Office UI onboarding expectations
+  for nodes.
+- [KANBAN-BACKEND.md](KANBAN-BACKEND.md) - Branch Kanban integration contract.
 
 ## Secret Policy
 
 This repo stores only templates, documentation, and environment variable names.
 Do not commit actual API keys, Tailscale auth keys, gateway tokens, delegate
 tokens, state databases, logs, or session history.
-

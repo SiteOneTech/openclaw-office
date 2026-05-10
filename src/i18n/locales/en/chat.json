@@ -1,0 +1,149 @@
+{
+  "thinking": {
+    "title": "Thinking",
+    "expand": "Show thinking",
+    "collapse": "Hide thinking"
+  },
+  "connection": {
+    "disconnected": "Disconnected",
+    "reconnecting": "Reconnecting...",
+    "failed": "Cannot connect to Gateway",
+    "retry": "Reconnect"
+  },
+  "dock": {
+    "collapseDock": "Collapse chat",
+    "expandDock": "Expand chat",
+    "attachmentWip": "Attachments (coming soon)",
+    "placeholder": "Type a message... (Enter to send, Shift+Enter for new line)",
+    "startNewChat": "Start a new conversation",
+    "thinkingStatus": "Thinking..."
+  },
+  "agentSelector": {
+    "defaultLabel": "Agent"
+  },
+  "dialog": {
+    "sendMessage": "Send Message",
+    "killConfirm": "Kill Confirmation",
+    "inputPlaceholder": "Enter command...",
+    "killWarning": "Are you sure you want to kill <strong>{{name}}</strong>'s current run? This cannot be undone.",
+    "kill": "Kill"
+  },
+  "chatDialog": {
+    "loadingHistory": "Loading history...",
+    "scrollToBottom": "Scroll to bottom"
+  },
+  "page": {
+    "description": "A dedicated operator chat workspace with session context and live transcript updates.",
+    "emptyTitle": "Start a conversation",
+    "emptyDescription": "Pick a session or type a message to begin chatting with the selected OpenClaw agent.",
+    "export": "Export",
+    "focusOn": "Focus mode",
+    "focusOff": "Exit focus",
+    "pinned": "Pinned",
+    "addAttachment": "Add attachment",
+    "removeAttachment": "Remove attachment",
+    "clearAttachments": "Clear attachments",
+    "sessionsTitle": "Sessions",
+    "sessionsDescription": "Start a fresh thread or jump back into recent context.",
+    "sessionHistory": "Recent history",
+    "sessionEmpty": "No sessions yet",
+    "newSessionPrimary": "New session",
+    "chatWith": "Chat with {{agent}}",
+    "conversationTitle": "Conversation",
+    "conversationSubtitle": "Live transcript, tools, and markdown-rich responses for the active session.",
+    "sessionMeta": "{{time}} · {{detail}}",
+    "scrollToLatest": "Jump to latest"
+  },
+  "message": {
+    "assistant": "Assistant",
+    "hideDetails": "Hide",
+    "pin": "Pin",
+    "pinned": "Pinned",
+    "result": "Result",
+    "toolArgs": "Args",
+    "toolCall": "Tool call",
+    "you": "You",
+    "viewDetails": "Details"
+  },
+  "toolStatus": {
+    "error": "Error",
+    "pending": "Pending",
+    "running": "Running",
+    "done": "Done"
+  },
+  "toolActivity": {
+    "calling": "Calling tool `{{name}}`",
+    "finished": "Tool `{{name}}` finished"
+  },
+  "state": {
+    "enabled": "enabled",
+    "disabled": "disabled"
+  },
+  "sessionSwitcher": {
+    "noSessions": "No other sessions",
+    "newSession": "New session",
+    "newSessionWith": "New session with {{agent}}",
+    "newSessionTooltip": "New chat",
+    "relativeNow": "just now",
+    "relativeMinutes_one": "{{count}}m",
+    "relativeMinutes_other": "{{count}}m",
+    "relativeHours_one": "{{count}}h",
+    "relativeHours_other": "{{count}}h",
+    "relativeDays_one": "{{count}}d",
+    "relativeDays_other": "{{count}}d",
+    "messageCount_one": "{{count}} msg",
+    "messageCount_other": "{{count}} msgs"
+  },
+  "slash": {
+    "helpTitle": "Available Commands",
+    "commands": {
+      "new": "Start a new session",
+      "reset": "Reset the current session",
+      "compact": "Compact the current session context",
+      "stop": "Stop the active run",
+      "clear": "Clear the local transcript view",
+      "focus": "Toggle focus mode",
+      "export": "Export the transcript to Markdown",
+      "help": "Show available slash commands",
+      "agents": "List available agents",
+      "model": "Show or set session model",
+      "think": "Show or set thinking level",
+      "verbose": "Show or set verbose mode",
+      "fast": "Show or set fast mode"
+    },
+    "feedback": {
+      "newSession": "Started a new session.",
+      "reset": "Session reset.",
+      "stop": "Stopped the active run.",
+      "focusEnabled": "Focus mode enabled.",
+      "focusDisabled": "Focus mode disabled.",
+      "exported": "Transcript exported to Markdown.",
+      "exportUnavailable": "Transcript export is not available in this environment.",
+      "availableAgents": "Available agents",
+      "agentsLoadFailed": "Failed to load agents: {{error}}",
+      "currentModel": "Current model: `{{model}}`{{providerSuffix}}",
+      "modelSet": "Model set to `{{model}}`.",
+      "modelSetFailed": "Failed to set model: {{error}}",
+      "currentThinking": "Current thinking level: {{level}}.",
+      "thinkingSet": "Thinking level set to `{{level}}`.",
+      "thinkingSetFailed": "Failed to set thinking level: {{error}}",
+      "currentVerbose": "Current verbose mode: `{{level}}`.",
+      "verboseSet": "Verbose mode set to `{{level}}`.",
+      "verboseSetFailed": "Failed to set verbose mode: {{error}}",
+      "fastStatus": "Fast mode is {{enabled}}.",
+      "fastSet": "Fast mode {{enabled}}.",
+      "fastSetFailed": "Failed to set fast mode: {{error}}",
+      "compactSuccess": "Session context compacted.",
+      "compactFailed": "Failed to compact session: {{error}}"
+    }
+  },
+  "contextMenu": {
+    "pause": "Pause",
+    "resume": "Resume",
+    "notSupported": "Not supported yet",
+    "kill": "Kill",
+    "sendMessage": "Send Message",
+    "viewDetail": "View Detail",
+    "operatorRequired": "Operator permission required"
+  }
+}

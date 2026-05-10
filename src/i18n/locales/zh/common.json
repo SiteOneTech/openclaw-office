@@ -1,0 +1,98 @@
+{
+  "status": {
+    "connecting": "连接中...",
+    "connected": "已连接",
+    "reconnecting": "重连中",
+    "disconnected": "未连接",
+    "error": "连接错误",
+    "active": "活跃",
+    "paused": "已暂停",
+    "ok": "正常",
+    "failed": "失败",
+    "running": "运行中",
+    "pending": "等待中",
+    "disabled": "已禁用"
+  },
+  "actions": {
+    "send": "发送",
+    "cancel": "取消",
+    "close": "关闭",
+    "confirm": "确定",
+    "stop": "停止",
+    "retry": "重试",
+    "dismiss": "忽略",
+    "save": "保存",
+    "delete": "删除",
+    "refresh": "刷新",
+    "create": "创建",
+    "edit": "编辑"
+  },
+  "time": {
+    "justNow": "刚刚",
+    "secondsAgo": "{{count}}秒前",
+    "minutesAgo": "{{count}}分前",
+    "hoursAgo": "{{count}}时前",
+    "running": "运行 {{seconds}}s",
+    "runningMinutes": "运行 {{minutes}}m {{seconds}}s"
+  },
+  "format": {
+    "viaValue": "，提供方为 {{value}}"
+  },
+  "empty": {
+    "noData": "暂无数据",
+    "noCostData": "暂无成本数据",
+    "noActivityData": "暂无活跃数据",
+    "noRelationData": "暂无 Agent 关系数据",
+    "noEvents": "暂无事件",
+    "noMatchingAgents": "无匹配 Agent",
+    "noSubAgents": "无 Sub-Agent",
+    "waitingUsageData": "暂无数据，等待 usage 数据..."
+  },
+  "agent": {
+    "statusLabels": {
+      "idle": "空闲",
+      "thinking": "思考中",
+      "tool_calling": "工具调用",
+      "speaking": "回复中",
+      "spawning": "创建中",
+      "error": "错误",
+      "offline": "离线"
+    }
+  },
+  "zones": {
+    "desk": "固定工位区",
+    "meeting": "会议区",
+    "hotDesk": "临时工位区",
+    "lounge": "休息区"
+  },
+  "errors": {
+    "notConnected": "未连接到 Gateway",
+    "operationFailed": "操作失败",
+    "operationTimeout": "操作超时，Gateway 可能暂不支持此操作",
+    "adapterNotInitialized": "Gateway Adapter 未初始化",
+    "unknownError": "未知错误",
+    "errorOccurred": "发生错误"
+  },
+  "events": {
+    "startRunning": "开始运行",
+    "thinking": "思考中",
+    "runEnded": "运行结束",
+    "fallback": "降级处理",
+    "toolCall": "调用工具: {{name}}",
+    "toolDone": "工具完成: {{name}}",
+    "errorPrefix": "错误: {{message}}",
+    "unknownStream": "未知流: {{stream}}",
+    "lifecycleUnknown": "生命周期: {{phase}}",
+    "commandOutput": "命令输出",
+    "commandExited": "命令退出 (code: {{code}})",
+    "itemStart": "开始: {{title}}",
+    "itemDone": "完成: {{title}}",
+    "itemFailed": "失败: {{title}}",
+    "itemUpdate": "任务更新",
+    "plan": "计划: {{title}}",
+    "approvalRequested": "等待审批: {{title}}",
+    "approvalResolved": "审批完成: {{title}}",
+    "patch": "文件变更 ({{total}} 项)",
+    "compaction": "上下文压缩"
+  }
+}

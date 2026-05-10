@@ -1,0 +1,863 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "System overview: Gateway status, channel connections, skill status",
+    "loading": "Loading dashboard data...",
+    "stats": {
+      "channels": "Channels",
+      "skills": "Skills",
+      "local_skills": "Local Skills",
+      "usage": "Provider Usage",
+      "uptime": "Uptime",
+      "uptimeOnline": "Online"
+    },
+    "alerts": {
+      "gatewayDisconnected": "Gateway disconnected, data may not be up to date",
+      "channelErrors": "{{count}} channel(s) with errors"
+    },
+    "connectionGuide": {
+      "title": "Cannot connect to Gateway",
+      "subtitle": "Please check the following",
+      "reconnecting": "Attempting to reconnect...",
+      "step1": "Make sure OpenClaw Gateway is running (default port 18789)",
+      "step2": "Verify the Gateway token is configured (use --token flag or install openclaw CLI for auto-detection)",
+      "step3": "If Gateway is on another host, use --gateway ws://host:port",
+      "cmdComment": "Example: start with token"
+    },
+    "quickNav": {
+      "title": "Quick Navigation"
+    },
+    "channelOverview": {
+      "title": "Connected Channels",
+      "empty": "No connected channels"
+    },
+    "skillOverview": {
+      "title": "Active Skills",
+      "empty": "No enabled skills"
+    }
+  },
+  "channels": {
+    "title": "Channels",
+    "description": "Manage messaging channels: Telegram, Discord, WhatsApp, etc.",
+    "stats": {
+      "total": "Total",
+      "connected": "Connected",
+      "errors": "Errors"
+    },
+    "card": {
+      "lastConnected": "Last connected: {{time}}",
+      "details": "Details",
+      "logout": "Logout"
+    },
+    "empty": {
+      "title": "No channels configured",
+      "description": "Select a channel type below to get started"
+    },
+    "available": {
+      "title": "Available Channel Types",
+      "configured": "Configured",
+      "add": "Add"
+    },
+    "types": {
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "whatsapp": "WhatsApp",
+      "signal": "Signal",
+      "feishu": "Feishu",
+      "imessage": "iMessage",
+      "matrix": "Matrix",
+      "line": "LINE",
+      "msteams": "MS Teams",
+      "googlechat": "Google Chat",
+      "mattermost": "Mattermost"
+    },
+    "fields": {
+      "botToken": "Bot Token",
+      "chatId": "Chat ID",
+      "applicationId": "Application ID",
+      "phoneNumber": "Phone Number",
+      "appId": "App ID",
+      "appSecret": "App Secret",
+      "homeserver": "Homeserver URL",
+      "accessToken": "Access Token",
+      "channelAccessToken": "Channel Access Token",
+      "channelSecret": "Channel Secret",
+      "appPassword": "App Password",
+      "serviceAccount": "Service Account JSON",
+      "serverUrl": "Server URL"
+    },
+    "placeholders": {
+      "botToken": "Enter Bot Token",
+      "chatId": "e.g. -1001234567890",
+      "applicationId": "Enter Application ID",
+      "phoneNumber": "+1...",
+      "appId": "Enter App ID",
+      "appSecret": "Enter App Secret",
+      "homeserver": "https://matrix.org",
+      "accessToken": "Enter Access Token",
+      "channelAccessToken": "Enter Channel Access Token",
+      "channelSecret": "Enter Channel Secret",
+      "appPassword": "Enter App Password",
+      "serviceAccount": "Paste Service Account JSON",
+      "serverUrl": "https://mattermost.example.com"
+    },
+    "configDialog": {
+      "required": "This field is required",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "qr": {
+      "description": "Scan the QR code with your WhatsApp mobile app to pair",
+      "startPairing": "Start Pairing",
+      "loading": "Generating QR code...",
+      "scanPrompt": "Scan QR code with your phone",
+      "waitingScan": "Waiting for scan...",
+      "success": "Paired successfully!",
+      "error": "Pairing failed"
+    },
+    "logout": {
+      "title": "Logout Channel",
+      "description": "Are you sure you want to logout \"{{name}}\"? You will need to re-pair."
+    },
+    "gcpNotice": {
+      "title": "Looking for Telegram alerts and broadcast channels?",
+      "body": "Notification channels backed by GCP Secret Manager (admin Telegram bot, branch broadcast bots) are managed in Setup GCP, with Chat ID, secret rotation, and a built-in test button.",
+      "cta": "Open Setup GCP"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "description": "Manage skills and plugins: install, enable/disable, configure",
+    "tabs": {
+      "installed": "Installed",
+      "marketplace": "Marketplace"
+    },
+    "installed": {
+      "searchPlaceholder": "Search installed skills..."
+    },
+    "filters": {
+      "all": "All ({{count}})",
+      "built-in": "Built-in ({{count}})",
+      "marketplace": "Marketplace ({{count}})"
+    },
+    "source": {
+      "builtIn": "Built-in",
+      "marketplace": "Marketplace"
+    },
+    "card": {
+      "configure": "Configure",
+      "install": "Install",
+      "installing": "Installing...",
+      "missingDeps": "Missing dependencies",
+      "coreProtected": "Core skill cannot be disabled"
+    },
+    "detail": {
+      "info": "Info",
+      "source": "Source",
+      "version": "Version",
+      "author": "Author",
+      "primaryEnv": "Primary environment variable",
+      "homepage": "Homepage",
+      "requirements": "Requirements",
+      "config": "Configuration",
+      "configChecks": "Config Checks",
+      "noConfig": "This skill requires no configuration",
+      "apiKeyPlaceholder": "Enter API Key",
+      "envVars": "Environment Variables",
+      "addVariable": "Add Variable",
+      "noEnvVars": "No environment variables configured",
+      "keyPlaceholder": "Key",
+      "valuePlaceholder": "Value",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "saving": "Saving..."
+    },
+    "install": {
+      "title": "Install {{name}}"
+    },
+    "marketplace": {
+      "securityNote": "Review the skill source, homepage, and dependency requirements before installing. This web marketplace view is built from the installable skills returned by the Gateway.",
+      "searchPlaceholder": "Search marketplace skills...",
+      "searchButton": "Search",
+      "emptyTitle": "No marketplace skills",
+      "emptyDescription": "The current Gateway did not return any marketplace-ready skills",
+      "noResults": "No marketplace skills match your search",
+      "installed": "Installed",
+      "version": "Version {{version}}",
+      "author": "Author {{author}}",
+      "learnMore": "Details"
+    },
+    "toast": {
+      "enabled": "{{name}} enabled",
+      "disabled": "{{name}} disabled",
+      "toggleFailed": "Failed to toggle skill",
+      "installSuccess": "{{name}} installed successfully",
+      "installFailed": "Failed to install {{name}}",
+      "installWarning": "Install warning"
+    },
+    "empty": {
+      "title": "No skills found",
+      "description": "Try switching tabs or adjusting filters"
+    }
+  },
+  "clawhub": {
+    "searchPlaceholder": "Search skills on ClawHub...",
+    "offlineNotice": "Cannot connect to ClawHub, showing locally installed skills",
+    "noSearchResults": "No matching skills found",
+    "tryDifferentQuery": "Try different search keywords",
+    "noSkills": "No skills available",
+    "noSkillsDescription": "ClawHub has no skills at the moment",
+    "loadMore": "Load More",
+    "downloads": "downloads",
+    "stars": "stars",
+    "viewOnClawHub": "View on ClawHub",
+    "notFound": "Skill not found",
+    "installTitle": "Install {{name}}",
+    "securityWarning": "Please review the skill source code and permissions before installing. Third-party skills may access your system.",
+    "installCommand": "Run this command in your terminal:",
+    "cancel": "Cancel",
+    "installDone": "I've installed it"
+  },
+  "toast": {
+    "showDetail": "Show details",
+    "hideDetail": "Hide details"
+  },
+  "commandResult": {
+    "exitCode": "Exit code",
+    "copyAll": "Copy all"
+  },
+  "restart": {
+    "pending": "Gateway restarting in {{seconds}}s...",
+    "disconnected": "Gateway disconnected, waiting for restart...",
+    "reconnecting": "Reconnecting...",
+    "complete": "Gateway is back online"
+  },
+  "configLifecycle": {
+    "effectiveNow": "Changes are active now.",
+    "savedHotReload": "Configuration saved. Gateway will apply its built-in reload handling automatically.",
+    "savedRestartRequired": "Configuration saved. Some changes require a Gateway restart to be fully applied.",
+    "savedCliRestartRequired": "Configuration saved. Run the command below to restart Gateway and apply the changes.",
+    "applyRestarting": "Configuration saved. Gateway will restart in {{seconds}}s.",
+    "disconnected": "Gateway disconnected while restart is in progress.",
+    "reconnecting": "Reconnecting to Gateway.",
+    "complete": "Gateway is back online and the latest configuration is active.",
+    "copyCommand": "Copy command",
+    "copiedCommand": "Copied",
+    "runtimeAgentModel": "Default model updated. New requests use the new model; current runs keep their existing model.",
+    "runtimeAgentModelSessionsReset": "Default model updated. Existing external channel sessions were cleared, so the next message on Feishu and similar channels will rebuild the session with the new model.",
+    "runtimeSkill": "Skill configuration updated and active immediately.",
+    "runtimeCron": "Scheduled task changes are active immediately."
+  },
+  "cron": {
+    "title": "Cron Tasks",
+    "description": "Manage cron tasks: create, edit, enable/disable, run immediately",
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "paused": "Paused",
+      "failed": "Failed"
+    },
+    "card": {
+      "lastRun": "Last run",
+      "nextRun": "Next run",
+      "runNow": "Run now"
+    },
+    "presets": {
+      "everyHour": "Every hour",
+      "daily9am": "Daily 9 AM",
+      "daily6pm": "Daily 6 PM",
+      "weeklyMon": "Weekly Monday 9 AM",
+      "monthlyFirst": "Monthly 1st",
+      "every30min": "Every 30 min"
+    },
+    "dialog": {
+      "createTitle": "Create Cron Task",
+      "editTitle": "Edit Cron Task",
+      "name": "Task Name",
+      "namePlaceholder": "Enter task name",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional task description",
+      "schedule": "Schedule",
+      "cronHelp": "Standard cron expression: min hour day month weekday",
+      "message": "Message",
+      "messagePlaceholder": "Enter message to send to the agent",
+      "required": "This field is required"
+    },
+    "empty": {
+      "title": "No cron tasks",
+      "createFirst": "Create your first task"
+    },
+    "delete": {
+      "title": "Delete Cron Task",
+      "description": "Are you sure you want to delete this cron task? This cannot be undone."
+    },
+    "run": {
+      "title": "Run Now",
+      "description": "Are you sure you want to run this cron task immediately?"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "App settings: theme, provider, gateway, updates",
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "themeLight": "Light",
+      "themeDark": "Dark",
+      "themeSystem": "System",
+      "language": "Language",
+      "langZh": "中文",
+      "langEn": "English"
+    },
+    "providers": {
+      "title": "AI Providers",
+      "description": "Manage AI model provider configurations",
+      "add": "Add Provider",
+      "empty": "No AI Providers configured",
+      "emptyHint": "Click the button above to add your first provider",
+      "apiKeyConfigured": "Configured",
+      "apiKeyNotConfigured": "Not configured",
+      "apiKeyRequired": "API key required",
+      "noApiKeyRequired": "No key needed",
+      "systemDiscovered": "System",
+      "modelCount": "{{count}} model(s)",
+      "deleteTitle": "Delete Provider",
+      "deleteDescription": "Are you sure you want to delete provider \"{{name}}\"? You will need to reconfigure it.",
+      "addDialog": {
+        "title": "Add Provider",
+        "selectType": "Select Provider Type",
+        "backToSelect": "Back to type selection",
+        "providerId": "Provider ID",
+        "providerIdHint": "Unique identifier in the config file",
+        "baseUrl": "Base URL",
+        "apiKey": "API Key",
+      "apiType": "API Type",
+      "idConflict": "This Provider ID already exists",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saveAndRestart": "Save and Restart"
+    },
+    "editDialog": {
+      "title": "Edit Provider",
+      "apiKeyPlaceholder": "Leave empty to keep unchanged",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saveAndRestart": "Save and Restart"
+    },
+      "models": {
+        "title": "Models",
+        "add": "Add Model",
+        "remove": "Remove Model",
+        "empty": "No models configured. Click above to add one.",
+        "untitled": "Untitled Model",
+        "id": "Model ID",
+        "name": "Display Name",
+        "reasoning": "Reasoning",
+        "inputTypes": "Input Types",
+        "input_text": "Text",
+        "input_image": "Image",
+        "yes": "Yes",
+        "no": "No",
+        "apiOverride": "API Override",
+        "inheritProvider": "Inherit from provider",
+        "contextWindow": "Context Window",
+        "maxTokens": "Max Output Tokens",
+        "cost": "Cost ($/M tokens)",
+        "costHint": "In USD per million tokens. 0 means free.",
+        "cost_input": "Input",
+        "cost_output": "Output",
+        "cost_cacheRead": "Cache Read",
+        "cost_cacheWrite": "Cache Write",
+        "showAdvanced": "Advanced compatibility options",
+        "hideAdvanced": "Hide advanced options",
+        "default": "Default",
+        "thinkingFormat": "Thinking Format",
+        "maxTokensField": "maxTokens Field Name",
+        "compat_supportsStore": "Supports store/memory",
+        "compat_supportsDeveloperRole": "Supports developer role",
+        "compat_supportsReasoningEffort": "Supports reasoning effort",
+        "compat_supportsUsageInStreaming": "Usage in streaming",
+        "compat_supportsStrictMode": "Supports strict mode",
+        "compat_requiresToolResultName": "Requires tool result name",
+        "compat_requiresAssistantAfterToolResult": "Requires assistant after tool result",
+        "compat_requiresThinkingAsText": "Thinking as text",
+        "compat_requiresMistralToolIds": "Mistral tool IDs"
+      }
+    },
+    "service": {
+      "title": "System Service",
+      "description": "Gateway service lifecycle management",
+      "status": "Service Status",
+      "running": "Running",
+      "stopped": "Stopped",
+      "unknown": "Unknown",
+      "pid": "PID",
+      "port": "Port",
+      "installed": "Installed",
+      "notInstalled": "Not Installed",
+      "installStatus": "System Service",
+      "actions": "Actions",
+      "start": "Start",
+      "stop": "Stop",
+      "restart": "Restart",
+      "starting": "Starting...",
+      "stopping": "Stopping...",
+      "restarting": "Restarting...",
+      "install": "Install Service",
+      "uninstall": "Uninstall Service",
+      "installing": "Installing...",
+      "uninstalling": "Uninstalling...",
+      "installHint": "Install as system service so Gateway starts automatically on login",
+      "uninstallHint": "Uninstall system service to stop auto-starting Gateway",
+      "confirmStop": "Are you sure you want to stop the Gateway service? All connections will be dropped.",
+      "confirmRestart": "Are you sure you want to restart the Gateway service? The connection will be briefly interrupted.",
+      "confirmUninstall": "Are you sure you want to uninstall the system service?",
+      "platformUnavailable": "Platform Service Unavailable",
+      "platformUnavailableHint": "Please start the Platform Service first (pnpm platform). Service management requires it to execute local commands.",
+      "actionSuccess": "{{action}} succeeded",
+      "actionFailed": "{{action}} failed",
+      "fetchingStatus": "Fetching status..."
+    },
+    "logs": {
+      "title": "Log Viewer",
+      "description": "View Gateway runtime logs in real time",
+      "startFollow": "Start Following",
+      "stopFollow": "Stop Following",
+      "pause": "Pause",
+      "resume": "Resume",
+      "clear": "Clear",
+      "following": "Following",
+      "paused": "Paused",
+      "idle": "Idle",
+      "noLogs": "No logs yet. Click \"Start Following\" to view live logs.",
+      "newLogs": "New logs ↓",
+      "lineCount": "{{count}} lines"
+    },
+    "gateway": {
+      "title": "Gateway",
+      "description": "Gateway runtime status",
+      "version": "Version",
+      "port": "Port",
+      "uptime": "Uptime",
+      "mode": "Mode",
+      "nodeVersion": "Node.js",
+      "platform": "Platform",
+      "refresh": "Refresh",
+      "notConnected": "Gateway not connected",
+      "notConnectedHint": "Make sure OpenClaw Gateway is running",
+      "uptimeFormat": "{{hours}}h {{minutes}}m"
+    },
+    "update": {
+      "title": "Updates",
+      "currentVersion": "Current Version",
+      "channel": "Update Channel",
+      "checkUpdate": "Check for Updates",
+      "updating": "Updating...",
+      "confirmTitle": "Confirm Update",
+      "confirmDescription": "The Gateway will restart during the update and the connection will be briefly interrupted. Continue?",
+      "resultOk": "Update successful, version upgraded from {{before}} to {{after}}, Gateway is restarting",
+      "resultNoop": "Already up to date",
+      "resultError": "Update failed: {{reason}}"
+    },
+    "advanced": {
+      "title": "Advanced",
+      "devMode": "Developer Mode",
+      "devModeHint": "Enable to show developer tools"
+    },
+    "developer": {
+      "title": "Developer Tools",
+      "gatewayToken": "Gateway Token",
+      "tokenConfigured": "Configured",
+      "tokenHint": "Use CLI `openclaw config get gateway.auth.token` to view the full token",
+      "configPath": "Config File Path",
+      "rawConfig": "Raw Configuration",
+      "showConfig": "Show",
+      "hideConfig": "Hide",
+      "wsUrl": "WebSocket URL",
+      "connectionStatus": "Connection Status",
+      "copied": "Copied"
+    },
+    "about": {
+      "title": "About",
+      "appName": "OpenClaw Office",
+      "tagline": "Multi-Agent collaboration visual monitoring",
+      "version": "Version",
+      "docs": "Documentation",
+      "github": "GitHub"
+    },
+    "restartWarning": "Gateway will automatically restart after saving configuration, connection will be briefly interrupted",
+    "configConflict": "Configuration was modified by another client, automatically reloaded"
+  },
+  "viewModels": {
+    "statusLabels": {
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "connecting": "Connecting",
+      "error": "Error"
+    },
+    "taskStatus": {
+      "active": "Active",
+      "paused": "Paused"
+    },
+    "schedule": {
+      "daily": "Daily at {{time}}",
+      "weekly": "Weekly {{day}} at {{time}}",
+      "every": "every {{minutes}}m",
+      "at": "at {{time}}",
+      "unknown": "unknown"
+    },
+    "skillSource": {
+      "builtIn": "built-in",
+      "marketplace": "marketplace"
+    }
+  },
+  "agents": {
+    "title": "Agent Management",
+    "description": "Manage agent configuration, core files, and model settings",
+    "panelTitle": "Agents",
+    "detailDescription": "Workspace and routing for agent {{id}}",
+    "configured": "{{count}} configured.",
+    "refresh": "Refresh",
+    "searchPlaceholder": "Search agents...",
+    "noAgents": "No agents",
+    "noAgentsDesc": "No agents configured yet",
+    "selectAgent": "Select an agent",
+    "selectAgentDesc": "Select an agent from the list to view details",
+    "defaultBadge": "DEFAULT",
+    "addAgent": "Add Agent",
+    "tabs": {
+      "overview": "Overview",
+      "files": "Files",
+      "tools": "Tools",
+      "skills": "Skills",
+      "local_skills": "Local Skills",
+      "channels": "Channels",
+      "cronJobs": "Cron Jobs"
+    },
+    "overview": {
+      "title": "Basic Info",
+      "agentId": "Agent ID",
+      "name": "Name",
+      "workspace": "Workspace",
+      "isDefault": "Default Agent",
+      "yes": "Yes",
+      "no": "No",
+      "modelConfig": "Model Configuration",
+      "primaryModel": "Primary Model",
+      "primaryModelPlaceholder": "Select primary model...",
+      "fallbackModels": "Fallback Models",
+      "fallbackPlaceholder": "Select fallback model...",
+      "addFallback": "Add Fallback",
+      "save": "Save",
+      "saving": "Saving...",
+      "saveSuccess": "Saved successfully",
+      "saveError": "Failed to save",
+      "runtimeHint": "Only affects new requests; in-progress runs keep their current model.",
+      "deleteAgent": "Delete Agent",
+      "cannotDeleteDefault": "Cannot delete default agent"
+    },
+    "files": {
+      "title": "Core Files",
+      "description": "Bootstrap persona, identity, and tool guidance.",
+      "workspace": "Workspace",
+      "noFiles": "No files",
+      "selectFile": "Select a file to view its content",
+      "content": "Content",
+      "reset": "Reset",
+      "save": "Save",
+      "saving": "Saving...",
+      "saveSuccess": "File saved",
+      "saveError": "Failed to save",
+      "unsavedChanges": "Unsaved changes",
+      "justNow": "just now",
+      "hoursAgo": "{{count}}h ago",
+      "daysAgo": "{{count}}d ago"
+    },
+    "tools": {
+      "title": "Tool Policy",
+      "noConfig": "No tool policy configured for this agent",
+      "profile": "Policy Profile",
+      "profileDefault": "Default (full)",
+      "profileFull": "Full",
+      "profileMinimal": "Minimal",
+      "profileCustom": "Custom",
+      "alsoAllow": "Also Allow",
+      "deny": "Deny",
+      "addTool": "Add Tool",
+      "removeTool": "Remove",
+      "enabledCount": "{{enabled}}/{{total}} enabled",
+      "catalogTitle": "Tool Catalog",
+      "sourceBuiltIn": "Built-in",
+      "sourcePlugin": "Plugin",
+      "sourceWorkspace": "Workspace",
+      "save": "Save",
+      "saving": "Saving...",
+      "saveSuccess": "Saved successfully",
+      "saveError": "Save failed",
+      "saveConflict": "Config changed, please reload and retry",
+      "refresh": "Refresh",
+      "noTools": "No tools available",
+      "allowList": "Allow List",
+      "denyList": "Deny List",
+      "all": "All"
+    },
+    "skills": {
+      "title": "Skill Configuration",
+      "noRestriction": "Using default skill configuration",
+      "defaultConfig": "Using default skill configuration",
+      "allowedSkills": "Allowed Skills",
+      "total": "Total",
+      "enabled": "Enabled",
+      "blocked": "Blocked",
+      "modeAll": "Use all skills",
+      "modeSelected": "Use selected skills only",
+      "modeAllDesc": "No restriction, all available skills can be used",
+      "modeSelectedDesc": "Only selected skills are allowed",
+      "coreProtected": "Core skill, cannot be deselected",
+      "blockedByAllowlist": "Blocked by allowlist",
+      "missingDeps": "Missing dependencies",
+      "sourceBuiltIn": "Built-in",
+      "sourceMarketplace": "Marketplace",
+      "selectAll": "Select All",
+      "deselectAll": "Deselect All",
+      "save": "Save",
+      "saving": "Saving...",
+      "saveSuccess": "Saved successfully",
+      "saveError": "Save failed",
+      "refresh": "Refresh"
+    },
+    "restart": {
+      "required": "Configuration saved. A Gateway restart is required for changes to take effect.",
+      "restartNow": "Restart Now",
+      "restarting": "Restarting...",
+      "done": "Gateway restarted. Configuration is now active."
+    },
+    "channels": {
+      "title": "Channel Status",
+      "noBindings": "No channels configured",
+      "gatewayInfo": "Showing Gateway-level channel status. Channel-agent bindings are managed in the config file.",
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "connecting": "Connecting",
+      "error": "Error",
+      "configured": "Configured",
+      "notConfigured": "Not configured",
+      "refresh": "Refresh"
+    },
+    "cronJobs": {
+      "title": "Scheduled Tasks",
+      "noCronJobs": "No scheduled tasks for this agent",
+      "addTask": "New Scheduled Task",
+      "total": "Total",
+      "enabled": "Enabled",
+      "errors": "Errors",
+      "refresh": "Refresh",
+      "confirmDelete": "Are you sure you want to delete this task?"
+    },
+    "createDialog": {
+      "title": "Add New Agent",
+      "name": "Name",
+      "namePlaceholder": "Enter agent name",
+      "nameRequired": "Name is required",
+      "workspace": "Workspace Path",
+      "workspacePlaceholder": "e.g. ~/.openclaw/workspace-myagent",
+      "workspaceRequired": "Workspace path is required",
+      "emoji": "Emoji",
+      "emojiPlaceholder": "e.g. 🤖",
+      "cancel": "Cancel",
+      "create": "Create",
+      "creating": "Creating..."
+    },
+    "deleteDialog": {
+      "title": "Delete Agent",
+      "confirm": "Are you sure you want to delete agent \"{{name}}\"? This action cannot be undone.",
+      "deleteFiles": "Also delete workspace files",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleting": "Deleting..."
+    }
+  },
+  "setupGcp": {
+    "title": "Setup GCP",
+    "description": "Approve new branch nodes joining the fleet and manage notification channels (Telegram, etc.) backed by GCP Secret Manager.",
+    "tabs": {
+      "pairing": "Pairing Requests",
+      "channels": "Notification Channels",
+      "openhands": "OpenHands",
+      "tunnels": "Tunnels"
+    },
+    "secretsNotice": {
+      "title": "Secrets stay in GCP Secret Manager",
+      "body": "Bot tokens and other credentials are stored in GCP Secret Manager via the fleet-registry-api. Plaintext values are never persisted in the browser or in the registry database."
+    },
+    "notConfigured": {
+      "title": "Registry API not configured",
+      "body": "Set VITE_REGISTRY_API_URL or inject window.__OPENCLAW_CONFIG__.registryApiUrl at runtime. The default targets the HQ sidecar over Tailscale (http://openclaw-hq:8781) and trusts the VPN as the perimeter — no bearer token is required."
+    },
+    "pairing": {
+      "title": "Pending pairing requests",
+      "description": "Branch nodes that have published themselves over Tailscale and are waiting for HQ to authorize delegation.",
+      "coordinator": "coordinator",
+      "rejectReason": "Rejection reason",
+      "rejectReasonPlaceholder": "Why is this request being rejected?",
+      "empty": {
+        "title": "No requests in this state",
+        "description": "Branches that contact the registry will appear here."
+      },
+      "statusFilter": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "smoke_passed": "Smoke OK",
+        "smoke_failed": "Smoke failed",
+        "all": "All"
+      },
+      "status": {
+        "pending": "pending",
+        "approved": "approved",
+        "rejected": "rejected",
+        "smoke_passed": "smoke ok",
+        "smoke_failed": "smoke failed"
+      },
+      "fields": {
+        "delegateUrl": "Delegate URL",
+        "allowedAgents": "Allowed agents",
+        "tokenFingerprint": "Token fingerprint",
+        "decidedBy": "Decided by",
+        "decidedAt": "Decided at",
+        "metadata": "Metadata"
+      }
+    },
+    "channels": {
+      "title": "Notification channels",
+      "description": "Channels used by HQ-Cloud and branches to send alerts. Telegram is the first supported transport.",
+      "enabled": "enabled",
+      "disabled": "disabled",
+      "noSecret": "no secret set",
+      "lastTest": "last tested",
+      "testOk": "Test message delivered.",
+      "testFailed": "Test failed: {{detail}}",
+      "secretValue": "Secret value",
+      "secretPlaceholder": "Paste bot token or webhook secret",
+      "secretHint": "Stored as a new GCP Secret Manager version. Earlier versions are kept for rollback.",
+      "testMessage": "Test message",
+      "testMessagePlaceholder": "Optional — leave blank for default ping",
+      "empty": {
+        "title": "No channels configured",
+        "description": "Add a channel to start receiving fleet notifications."
+      },
+      "createDialog": {
+        "title": "Add notification channel"
+      },
+      "fields": {
+        "kind": "Kind",
+        "name": "Display name",
+        "namePlaceholder": "e.g. Admin Bot",
+        "scope": "Scope",
+        "chatId": "Chat ID",
+        "chatIdPlaceholder": "e.g. -1001234567890",
+        "botToken": "Bot Token (initial secret)",
+        "botTokenPlaceholder": "1234567890:ABC..."
+      },
+      "deleteDialog": {
+        "title": "Delete channel",
+        "description": "Delete \"{{name}}\"? The associated GCP secret will also be removed."
+      }
+    },
+    "actions": {
+      "refresh": "Refresh",
+      "approve": "Approve",
+      "reject": "Reject",
+      "confirmReject": "Reject",
+      "cancel": "Cancel",
+      "addChannel": "Add Channel",
+      "save": "Save",
+      "create": "Create",
+      "creating": "Creating...",
+      "test": "Test",
+      "sendTest": "Send test",
+      "setSecret": "Set Secret",
+      "enable": "Enable",
+      "disable": "Disable"
+    },
+    "openhands": {
+      "title": "OpenHands LLM profiles",
+      "description": "Provider profiles consumed by Alekhine's OpenHands wrapper. The active profile drives every OpenHands run on this fleet.",
+      "createProfile": "Create profile",
+      "defaultBadge": "default",
+      "secretSet": "Secret set",
+      "noSecret": "No secret",
+      "lastTest": "last tested",
+      "testOk": "LLM round-trip OK.",
+      "testFailed": "Test failed: {{detail}}",
+      "banner": {
+        "title": "Active profile drives OpenHands",
+        "body": "The profile marked default is what Alekhine's OpenHands wrapper uses. API keys are persisted in GCP Secret Manager — never in the browser or registry DB."
+      },
+      "empty": {
+        "title": "No profiles configured",
+        "description": "Create a profile to bind an LLM provider/model + API key to OpenHands."
+      },
+      "createDialog": {
+        "title": "Create LLM profile"
+      },
+      "deleteDialog": {
+        "title": "Delete profile",
+        "description": "Delete \"{{label}}\"? The associated GCP secret will also be removed."
+      },
+      "fields": {
+        "provider": "Provider",
+        "model": "Model",
+        "modelPlaceholder": "e.g. claude-sonnet-4-5, gpt-4o, gemini-2.5-pro",
+        "label": "Label",
+        "labelPlaceholder": "e.g. Sonnet primary",
+        "apiKey": "API key",
+        "apiKeyOptional": "API key (optional, can be set later)",
+        "apiKeyPlaceholder": "sk-... / paste raw secret",
+        "apiKeyHint": "Stored as a new GCP Secret Manager version. Earlier versions are kept for rollback.",
+        "testPrompt": "Test prompt",
+        "testPromptPlaceholder": "Optional — leave blank for default ping"
+      },
+      "actions": {
+        "activate": "Activate",
+        "setSecret": "Set Secret",
+        "test": "Test",
+        "edit": "Edit",
+        "runTest": "Run test"
+      }
+    },
+    "tunnels": {
+      "title": "Local node tunnels",
+      "description": "Monitor only the tunnels that exist on this node. The UI reads the node-local Platform Service and does not list tunnels owned by other offices.",
+      "registry": "Local registry file",
+      "autostart": "autostart",
+      "detected": "detected locally",
+      "local": "Local",
+      "target": "Target",
+      "platformUnavailable": "Platform Service unavailable.",
+      "unmanagedHint": "This port is active, but this Platform Service did not start the process.",
+      "banner": {
+        "title": "Local-only operational view",
+        "body": "This page is informational for the current node. It combines the local registry file with SSH/GCP port-forward processes detected from the local shell, then can publish that node-owned snapshot for inventory."
+      },
+      "empty": {
+        "title": "No local tunnels found",
+        "description": "Add tunnel definitions to the local registry file or start a local SSH/GCP port-forward process to see it here."
+      },
+      "status": {
+        "running": "running",
+        "active-unmanaged": "active outside manager",
+        "stopped": "stopped"
+      },
+      "actions": {
+        "start": "Start",
+        "starting": "Starting...",
+        "stop": "Stop",
+        "stopping": "Stopping...",
+        "restart": "Restart",
+        "restarting": "Restarting...",
+        "discoverRegister": "Discover & register"
+      }
+    }
+  }
+}

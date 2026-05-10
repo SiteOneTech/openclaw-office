@@ -1,0 +1,31 @@
+{
+  "title": "Kanban",
+  "subtitle": "{{branch}} 分部工作看板",
+  "summary": {
+    "total": "总数",
+    "active": "活跃",
+    "blocked": "阻塞",
+    "stale": "超时"
+  },
+  "statuses": {
+    "backlog": "待办",
+    "ready": "就绪",
+    "claimed": "已领取",
+    "running": "运行中",
+    "review": "评审",
+    "qa": "QA",
+    "blocked": "阻塞",
+    "failed": "失败",
+    "done": "完成",
+    "archived": "归档"
+  },
+  "task": {
+    "agent": "Agent",
+    "project": "项目",
+    "priority": "P",
+    "updated": "更新"
+  },
+  "recentEvents": "最近事件",
+  "emptyColumn": "无任务",
+  "emptyEvents": "无事件"
+}

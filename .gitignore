@@ -1,16 +1,36 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+output/
+coverage/
+*.tgz
+
 # Local editor/runtime state
+.idea/
 .vscode/
+*.swp
+*.swo
+.venv/
 __pycache__/
 *.pyc
 *.pyo
 .DS_Store
+Thumbs.db
+
+# Package manager / tool caches
+.pnpm-store/
+.cursor/
+.codex/
 
 # Nested repositories managed separately
 mirofish-original-ai-forecast/
 
 # Local secrets / runtime state
 .env
+.env.local
 *.env
+*.local
 *.secret
 *.key
 *.pem
@@ -18,4 +38,16 @@ state.db
 sessions/
 logs/
 backups/
+*.log
 
+# Agent and office runtime
+.agent/
+.agents/
+.runtime/
+.worktrees/
+.claude/settings.local.json
+.codex/skills/openclaw-office-release/
+
+# Local generated debug artifacts
+debug-gw.cjs
+output/playwright/chat-inline-tool-check-1.png

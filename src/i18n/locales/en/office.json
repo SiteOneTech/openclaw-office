@@ -1,0 +1,104 @@
+{
+  "loading3D": "Loading 3D scene...",
+  "zones": {
+    "desk": "Desk Zone",
+    "meeting": "Meeting Zone",
+    "hotDesk": "Hot Desk Zone",
+    "lounge": "Lounge Zone"
+  },
+  "livingOffice": {
+    "zones": {
+      "staffFloor": "Staff Floor",
+      "lounge": "Lounge"
+    },
+    "hud": {
+      "gatewayTitle": "Gateway Control Hall",
+      "gatewaySubtitle": "Ingest events, dispatch tasks, coordinate globally",
+      "wsOnline": "WS Online",
+      "wsOffline": "WS Offline",
+      "statsTitle": "Metrics",
+      "statsActive": "Active",
+      "statsPending": "Pending",
+      "statsCron": "Cron",
+      "eventLogTitle": "Event Log",
+      "eventLogTag": "Narrative Log",
+      "eventLogWaiting": "Waiting for events…",
+      "eventLogCount": "{{count}} entries",
+      "tickerTitle": "Event Narrative",
+      "tickerTag": "Perception Layer",
+      "tickerSubtitle": "Compressing millisecond-level system events into perceivable organizational behaviors",
+      "controlTitle": "Interaction Trigger",
+      "controlTag": "Preview Controls",
+      "controlExpand": "Expand controls",
+      "legendIdle": "Idle / Normal",
+      "legendBusy": "Busy / Running",
+      "legendBlocked": "Blocked / Error",
+      "legendHeartbeat": "Heartbeat",
+      "legendCron": "Cron"
+    },
+    "panels": {
+      "gatewayHeader": "OPENCLAW GATEWAY",
+      "busWebSocket": "WebSocket",
+      "busEventSpine": "Event Spine",
+      "busRpcScope": "RPC / Scope",
+      "opsTitle": "Organization Board",
+      "opsSubtitle": "Causality matters more than noise",
+      "opsLive": "live",
+      "opsEnabled": "enabled",
+      "opsDisabled": "disabled",
+      "opsErrorAgents": "Error Agents",
+      "opsCollabLinks": "Collab Links",
+      "opsAgentToAgent": "Agent-to-Agent",
+      "opsSubCapacity": "Sub-Agent Cap",
+      "cronTitle": "Cron Board",
+      "cronSubtitle": "Institutional tasks, not personified",
+      "projectTitle": "Project Room",
+      "projectSubtitle": "Sub-agents only light up here",
+      "projectEmpty": "No active collaboration",
+      "projectEmptySub": "temporary workforce zone",
+      "memoryTitle": "Shared Memory Wall",
+      "memorySubtitle": "Goals / Facts / Context",
+      "memoryEmpty": "No live shared memories"
+    },
+    "status": {
+      "working": "Working",
+      "tool": "tool",
+      "collaborating": "Collab",
+      "returning": "Done",
+      "recovered": "Recovered"
+    },
+    "demo": {
+      "userTask": "User Message",
+      "collab": "Start Collab",
+      "cron": "Trigger Cron",
+      "heartbeat": "Heartbeat",
+      "incident": "Cause Block"
+    },
+    "gateway": {
+      "wsLabel": "WebSocket",
+      "eventBusLabel": "Event Bus",
+      "rpcLabel": "RPC",
+      "healthLabel": "Health",
+      "connecting": "Connecting",
+      "ready": "Ready",
+      "normal": "Normal",
+      "streaming": "Streaming",
+      "alert": "Alert",
+      "recovered": "Recovered"
+    },
+    "fallbackEvents": {
+      "msgArrival": "Message Arrival",
+      "msgArrivalDesc": "Telegram → Gateway event bus",
+      "gmDispatch": "GM Dispatch",
+      "gmDispatchDesc": "Smart routing → Match best Agent",
+      "salesReport": "Sales Report",
+      "salesReportDesc": "Tool call → Generate analysis",
+      "cronBroadcast": "Cron Broadcast",
+      "cronBroadcastDesc": "Periodic task → Notify all",
+      "heartbeat": "Heartbeat Check",
+      "heartbeatDesc": "Health pulse → Status sync",
+      "subAgentCollab": "Sub-Agent Collab",
+      "subAgentCollabDesc": "Spawn sub-agent → Parallel exec"
+    }
+  }
+}

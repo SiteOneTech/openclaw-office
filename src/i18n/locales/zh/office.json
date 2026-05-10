@@ -1,0 +1,104 @@
+{
+  "loading3D": "加载 3D 场景...",
+  "zones": {
+    "desk": "固定工位区",
+    "meeting": "会议区",
+    "hotDesk": "临时工位区",
+    "lounge": "休息区"
+  },
+  "livingOffice": {
+    "zones": {
+      "staffFloor": "员工工位",
+      "lounge": "休息区"
+    },
+    "hud": {
+      "gatewayTitle": "Gateway 中控大厅",
+      "gatewaySubtitle": "接入事件、分发任务、协调全局",
+      "wsOnline": "WS 在线",
+      "wsOffline": "WS 断开",
+      "statsTitle": "运行指标",
+      "statsActive": "活跃",
+      "statsPending": "待处理",
+      "statsCron": "Cron",
+      "eventLogTitle": "事件日志",
+      "eventLogTag": "Narrative Log",
+      "eventLogWaiting": "等待事件…",
+      "eventLogCount": "{{count}} 条",
+      "tickerTitle": "事件流转叙事",
+      "tickerTag": "Perception Layer",
+      "tickerSubtitle": "把毫秒级系统事件压缩成秒级可感知组织行为",
+      "controlTitle": "交互触发",
+      "controlTag": "Preview Controls",
+      "controlExpand": "展开操作台",
+      "legendIdle": "空闲/正常",
+      "legendBusy": "忙碌/执行中",
+      "legendBlocked": "阻塞/异常",
+      "legendHeartbeat": "Heartbeat",
+      "legendCron": "Cron"
+    },
+    "panels": {
+      "gatewayHeader": "OPENCLAW GATEWAY",
+      "busWebSocket": "WebSocket",
+      "busEventSpine": "Event Spine",
+      "busRpcScope": "RPC / Scope",
+      "opsTitle": "组织行为板",
+      "opsSubtitle": "因果链比热闹更重要",
+      "opsLive": "实时",
+      "opsEnabled": "已启用",
+      "opsDisabled": "已禁用",
+      "opsErrorAgents": "异常 Agent",
+      "opsCollabLinks": "协作链路",
+      "opsAgentToAgent": "Agent 互联",
+      "opsSubCapacity": "子 Agent 容量",
+      "cronTitle": "Cron 广播牌",
+      "cronSubtitle": "制度性任务，不拟人",
+      "projectTitle": "临时项目室",
+      "projectSubtitle": "Sub-agent 只在这里亮起",
+      "projectEmpty": "暂无临时协作",
+      "projectEmptySub": "临时工作区",
+      "memoryTitle": "共享记忆墙",
+      "memorySubtitle": "目标 / 事实 / 上下文",
+      "memoryEmpty": "暂无实时共享记忆"
+    },
+    "status": {
+      "working": "处理中",
+      "tool": "tool",
+      "collaborating": "协作",
+      "returning": "完成回报",
+      "recovered": "恢复"
+    },
+    "demo": {
+      "userTask": "客户消息到达",
+      "collab": "拉起协作",
+      "cron": "触发 Cron",
+      "heartbeat": "触发 Heartbeat",
+      "incident": "制造阻塞"
+    },
+    "gateway": {
+      "wsLabel": "WebSocket",
+      "eventBusLabel": "Event Bus",
+      "rpcLabel": "RPC",
+      "healthLabel": "Health",
+      "connecting": "连接中",
+      "ready": "就绪",
+      "normal": "正常",
+      "streaming": "实时事件中",
+      "alert": "异常告警",
+      "recovered": "恢复正常"
+    },
+    "fallbackEvents": {
+      "msgArrival": "客户消息到达",
+      "msgArrivalDesc": "Telegram → Gateway 事件总线",
+      "gmDispatch": "GM 接单分发",
+      "gmDispatchDesc": "智能路由 → 匹配最佳 Agent",
+      "salesReport": "Sales 分析报告",
+      "salesReportDesc": "工具调用 → 生成分析结论",
+      "cronBroadcast": "Cron 定时广播",
+      "cronBroadcastDesc": "周期任务 → 全员通知",
+      "heartbeat": "Heartbeat 巡检",
+      "heartbeatDesc": "健康脉冲 → 状态同步",
+      "subAgentCollab": "Sub-Agent 协作",
+      "subAgentCollabDesc": "拉起子 Agent → 并行执行"
+    }
+  }
+}

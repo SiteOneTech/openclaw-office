@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "tunnels": [
+    {
+      "id": "private-dashboard",
+      "label": "Private Dashboard",
+      "description": "Example GCP IAP tunnel. Replace project, zone, instance, and ports for the local node.",
+      "kind": "gcp-iap",
+      "project": "replace-with-gcp-project-id",
+      "zone": "replace-with-gcp-zone",
+      "instance": "replace-with-vm-name",
+      "localHost": "127.0.0.1",
+      "localPort": 9119,
+      "remoteHost": "127.0.0.1",
+      "remotePort": 9119,
+      "url": "http://127.0.0.1:9119",
+      "autostart": false,
+      "tags": ["example"]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Kanban",
+  "subtitle": "{{branch}} branch workboard",
+  "summary": {
+    "total": "Total",
+    "active": "Active",
+    "blocked": "Blocked",
+    "stale": "Stale"
+  },
+  "statuses": {
+    "backlog": "Backlog",
+    "ready": "Ready",
+    "claimed": "Claimed",
+    "running": "Running",
+    "review": "Review",
+    "qa": "QA",
+    "blocked": "Blocked",
+    "failed": "Failed",
+    "done": "Done",
+    "archived": "Archived"
+  },
+  "task": {
+    "agent": "Agent",
+    "project": "Project",
+    "priority": "P",
+    "updated": "Updated"
+  },
+  "recentEvents": "Recent events",
+  "emptyColumn": "No tasks",
+  "emptyEvents": "No events"
+}
