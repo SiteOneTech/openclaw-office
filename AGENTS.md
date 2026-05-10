@@ -22,12 +22,14 @@ OpenClaw Office is the visual monitoring and management frontend for the [OpenCl
 
 This repo is the canonical home for the graphical/product UI only: React/Vite source, office visualization, console, chat workspace, assets, i18n, and frontend service scripts.
 
-Do not add GCP Terraform, VM provisioning, Tailscale setup, branch registry code, MCP infrastructure, Zeus/Hermes runtime config, MiroFish product code, or software-factory code here. Use the repo map in `SITIOUNO-REPO-MAP.md`:
+Do not add GCP Terraform, VM provisioning, Tailscale setup, branch registry code, MCP infrastructure, runtime identity config, domain product code, or software-factory code here. Use the repo map in `SITIOUNO-REPO-MAP.md`:
 
-- `sitiouno/gcloud-office` for infra, node runbooks, branch registry, MCP routing, and Sicilia/Zeus/MiroFish node fichas.
+- `sitiouno/gcloud-office` for infra, node runbooks, branch registry, MCP routing, and current node fichas.
 - `SiteOneTech/sitiouno-software-factory-ai` for the software factory.
-- `SiteOneTech/hermes-agent` for Zeus/Hermes implementation.
-- `SiteOneTech/mirofish-original-ai-forecast` for MiroFish.
+- `SiteOneTech/hermes-agent` for coordinator/runtime implementation.
+- `SiteOneTech/mirofish-original-ai-forecast` for the MiroFish domain product.
+- `legacy-node-notes/` keeps old node-specific notes for context only; do not
+  treat it as the canonical source for new work.
 
 ## Runtime Source of Truth
 

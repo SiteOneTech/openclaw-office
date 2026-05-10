@@ -1,6 +1,6 @@
 # Estándar de Agente Programador/Erudito
 
-Aunque el nombre del agente programador puede variar por nodo (ej. Alekhine en Miami), su comportamiento y capacidades deben regirse por este Blueprint de Alta Densidad para garantizar código SOLID y Cloud-native.
+Aunque el nombre del agente programador puede variar por nodo, su comportamiento y capacidades deben regirse por este Blueprint de Alta Densidad para garantizar código SOLID y Cloud-native.
 
 ## SOUL.md (Plantilla Base)
 ```markdown

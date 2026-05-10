@@ -12,9 +12,9 @@ This repository owns:
 - Product-level integration surfaces such as local tunnels, Branch Kanban UI,
   setup/admin views, and runtime configuration hooks.
 
-This repository should stay node-agnostic. Sicilia, Miami, Hermes/Zeus,
-MiroFish, and Factory deployments are implementations or consumers of this
-office surface, not the identity of this fork.
+This repository should stay node-agnostic. Branches, departments, specialized
+agents, Factory deployments, simulators, and HQ coordinators are implementations
+or consumers of this office surface, not the identity of this fork.
 
 ## Domain Boundaries
 
@@ -25,8 +25,8 @@ map. In short:
 - Infrastructure, registry, MCP routing, fleet configuration, node runbooks, and
   per-node secrets belong in `gcloud-office`.
 - Software Factory capabilities belong in `sitiouno-software-factory-ai`.
-- Hermes/Zeus runtime implementation belongs in `hermes-agent`.
-- MiroFish product code belongs in `mirofish-original-ai-forecast`.
+- Coordinator/runtime implementations belong in their own runtime repositories.
+- Domain products and simulators belong in their own product repositories.
 
 ## Running From Source
 
@@ -54,10 +54,12 @@ provider credentials, tunnel endpoints, or node identities in React source.
 
 Useful references:
 
-- [README.en.md](README.en.md) - upstream product documentation.
+- [README.en.md](README.en.md) - English product documentation.
 - [NODE_ONBOARDING.md](NODE_ONBOARDING.md) - Office UI onboarding expectations
   for nodes.
 - [KANBAN-BACKEND.md](KANBAN-BACKEND.md) - Branch Kanban integration contract.
+- [legacy-node-notes/](legacy-node-notes/) - historical node notes kept only
+  for migration/context.
 
 ## Secret Policy
 

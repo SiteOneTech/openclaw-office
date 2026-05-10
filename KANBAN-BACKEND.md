@@ -71,28 +71,29 @@ journalctl --user -u openclaw-office-<branch>.service -n 80 --no-pager
 systemctl --user status openclaw-delegate-<branch>.service
 ```
 
-## Node Registration and Zeus/Hermes
+## Branch Registration and HQ Coordinator
 
-This UI does not make a branch visible to Zeus by itself. Zeus runs on Hermes
-and uses the `openclaw-office` MCP server from `gcloud-office`.
+This UI does not make a branch visible to the HQ coordinator by itself. The
+canonical coordinator, registry, MCP routing, and fleet inventory live outside
+this repository, in `gcloud-office` or the configured coordinator runtime repo.
 
-For Zeus to see and use a branch, the branch must provide:
+For an HQ coordinator to see and use a branch, the branch must provide:
 
 - Tailscale identity: hostname `openclaw-<branch>` and a `100.x.y.z` IP.
 - HQ registry entry via `gcloud-office/scripts/publish_branch_registry.py`.
 - Delegate receiver at `http://100.x.y.z:8780/v1/delegate`.
 - Branch report support: `GET /v1/delegate`.
 - Branch Kanban support: `GET /v1/kanban`.
-- Shared delegation token configured in Zeus as
+- Shared delegation token configured in the coordinator runtime, commonly as
   `OPENCLAW_<BRANCH>_DELEGATE_TOKEN`.
 
-Zeus combines:
+The coordinator commonly combines:
 
 - Live HQ registry: `http://openclaw-hq:8781/v1/branches`.
-- Stable Hermes inventory: `~/.hermes/openclaw-tools/openclaw-fleet.yaml`.
-- Secrets in Hermes: `~/.hermes/.env`.
+- Stable fleet inventory from the runtime repo.
+- Secrets from the coordinator runtime environment.
 
-Expected validation from Zeus:
+Expected validation from the coordinator tools:
 
 ```text
 openclaw_registry_branches()
@@ -104,8 +105,8 @@ openclaw_delegate_task("<branch>", "<coordinator>", "Responde exactamente: OK_<B
 
 Troubleshooting:
 
-- Visible in Tailscale but missing in Zeus: publish/update the HQ registry.
-- Agents visible but `token_configured=false`: add the Hermes env token.
+- Visible in Tailscale but missing in the coordinator: publish/update the HQ registry.
+- Agents visible but `token_configured=false`: add the coordinator env token.
 - `GET /v1/delegate` returns `501`: branch receiver is old; update `branch_inbox`.
 - POST returns `401`: receiver is alive but token mismatch.
 - POST times out: receiver accepted the task but local agent/gateway did not finish.

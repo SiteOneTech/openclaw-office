@@ -10,7 +10,7 @@
 
 ## SitioUno Fork Scope
 
-This fork owns the graphical/product surface of OpenClaw Office: React UI, visual office, console, chat, assets, i18n, and frontend service scripts. GCP infrastructure, node runbooks, MCP routing, Zeus/Hermes, MiroFish, and the software factory live in their own repositories. See [SITIOUNO-REPO-MAP.md](SITIOUNO-REPO-MAP.md).
+This fork owns the graphical/product surface of OpenClaw Office: React UI, visual office, console, chat, assets, i18n, and frontend service scripts. It is node-agnostic: branches, departments, specialized agents, simulators, HQ coordinators, and Factory deployments consume this office surface but do not define it. Infrastructure, node runbooks, MCP routing, runtime identities, domain products, and Factory implementation live in their own repositories. See [SITIOUNO-REPO-MAP.md](SITIOUNO-REPO-MAP.md).
 
 ---
 

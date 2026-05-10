@@ -4,11 +4,14 @@
 **Frecuencia de Revisión:** Semanal (vía CronJob)
 **Upstream:** `https://github.com/WW-AI-Lab/openclaw-office.git`
 
-Este repositorio es un **fork productivo** adaptado para las necesidades específicas de la sucursal Miami y la red global de *SitioUno*. Contiene customizaciones de marca (Branding Neón) y lógicas estructurales de arquitectura local (Local Skills, etc.).
+Este repositorio es un **fork productivo** agnostico al nodo, adaptado para la red global de *SitioUno*. Contiene la superficie grafica/producto de OpenClaw Office, customizaciones de marca configurables y logica estructural reusable (Local Skills, runtime config, tunnels, etc.).
 
 ## 0. Limite de Responsabilidad
 
-Este fork mantiene la superficie grafica/producto de OpenClaw Office. No debe absorber infraestructura GCP, registry, MCP multi-nodo, Zeus/Hermes, MiroFish ni la factory de software. El mapa canonico esta en [SITIOUNO-REPO-MAP.md](SITIOUNO-REPO-MAP.md).
+Este fork mantiene la superficie grafica/producto de OpenClaw Office. No debe absorber infraestructura GCP, registry, MCP multi-nodo, runtime de coordinadores, productos de dominio ni la factory de software. El mapa canonico esta en [SITIOUNO-REPO-MAP.md](SITIOUNO-REPO-MAP.md).
+
+Las notas historicas de nodos que aun existan para contexto viven en
+`legacy-node-notes/` y no son fuente canonica para nuevos despliegues.
 
 ## 1. Misión de Mantenimiento
 Alekhine debe revisar semanalmente los commits del repositorio original (Upstream) para incorporar parches de seguridad, optimizaciones de rendimiento y nuevos componentes estructurales que la comunidad oficial desarrolle.

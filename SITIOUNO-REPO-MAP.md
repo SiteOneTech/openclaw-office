@@ -7,7 +7,7 @@ Este repo es el **repo grafico y de producto UI**. Su trabajo es mostrar y opera
 | Area | Repo canonico | Que vive ahi |
 | --- | --- | --- |
 | UI grafica OpenClaw Office | `sitiouno/openclaw-office` | React/Vite, oficina 2D, consola, chat, assets, i18n, CLI `openclaw-office`, deploy local de UI. |
-| Infra GCP y nodos | `sitiouno/gcloud-office` | Terraform, scripts GCP, registry, MCP `kaspar-tools`, contratos de delegacion, runbooks de sucursales, fichas de Sicilia/Zeus/MiroFish. |
+| Infra GCP y nodos | `sitiouno/gcloud-office` | Terraform, scripts GCP, registry, MCP `kaspar-tools`, contratos de delegacion, runbooks de sucursales y fichas actuales de nodos. |
 | Software Factory | `SiteOneTech/sitiouno-software-factory-ai` | Oficina/servicio especializado para tareas de programacion y automatizacion de desarrollo. |
 | Zeus / Hermes | `SiteOneTech/hermes-agent` | Fork/configuracion del producto Hermes Agent, despliegue Zeus, Honcho, MCPs propios de Zeus. |
 | MiroFish | `SiteOneTech/mirofish-original-ai-forecast` | Producto simulador AI Forecast, backend/frontend del simulador y despliegues propios. |
@@ -35,6 +35,13 @@ El pill de version del TopBar muestra `package.version + git SHA` para que el au
 ## Local Skills
 
 `local-skills/` queda como zona transicional para skills que el Office distribuye junto con la experiencia local. Nuevas skills de infraestructura multi-nodo deben preferir `gcloud-office` o el repo especifico del agente/servicio que las consume.
+
+## Notas Legacy de Nodos
+
+`legacy-node-notes/` conserva copias historicas de notas, prompts y snapshots
+operativos de nodos especificos. Es archivo de contexto/migracion, no fuente
+canonica. Cualquier nueva documentacion operacional de sucursal debe vivir en
+`gcloud-office` o en el repo canonico del servicio correspondiente.
 
 ## No Guardar Aqui
 
