@@ -90,10 +90,12 @@ export function UpdateSection() {
             )}
             <span>
               {updateResult.result.status === "ok" &&
-                t("settings.update.resultOk", {
-                  before: updateResult.result.before ?? "?",
-                  after: updateResult.result.after ?? "?",
-                })}
+                (updateResult.result.before && updateResult.result.after
+                  ? t("settings.update.resultOk", {
+                      before: updateResult.result.before,
+                      after: updateResult.result.after,
+                    })
+                  : updateResult.result.reason || t("settings.update.resultNoop"))}
               {updateResult.result.status === "noop" && t("settings.update.resultNoop")}
               {updateResult.result.status === "error" &&
                 t("settings.update.resultError", {

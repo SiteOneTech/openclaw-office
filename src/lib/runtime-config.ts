@@ -5,6 +5,8 @@ export interface OpenClawRuntimeConfig {
   registryApiUrl?: string;
   officeTitle?: string;
   branchLabel?: string;
+  baseCommit?: string;
+  officeUpdateMode?: "gateway" | "fork-capablanca";
 }
 
 export const DEFAULT_OFFICE_TITLE = "SitioUno Office";
@@ -20,6 +22,15 @@ export function getOfficeTitle(): string {
 
 export function getBranchLabel(fallback = ""): string {
   return getRuntimeConfig().branchLabel || import.meta.env.VITE_BRANCH_LABEL || fallback;
+}
+
+export function getBaseCommit(fallback = ""): string {
+  return getRuntimeConfig().baseCommit || fallback;
+}
+
+export function getOfficeUpdateMode(): "gateway" | "fork-capablanca" {
+  const mode = getRuntimeConfig().officeUpdateMode;
+  return mode === "fork-capablanca" ? mode : "gateway";
 }
 
 export function normalizeBranchDisplayName(value: string): string {

@@ -9,6 +9,7 @@ import type {
   StatusSummary,
   UpdateRunResult,
 } from "@/gateway/adapter-types";
+import { getOfficeUpdateMode } from "@/lib/runtime-config";
 
 export interface RestartState {
   status: "pending" | "disconnected" | "reconnecting" | "complete";
@@ -88,6 +89,19 @@ interface ConfigStoreState {
   fetchStatus: () => Promise<void>;
   fetchCatalogModels: () => Promise<void>;
   runUpdate: (params?: { restartDelayMs?: number }) => Promise<UpdateRunResult>;
+}
+
+async function runForkCapablancaUpdateCheck(): Promise<UpdateRunResult> {
+  const response = await fetch("/api/node/fork-update-check", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: "{}",
+  });
+  const payload = (await response.json().catch(() => null)) as UpdateRunResult | null;
+  if (!payload || typeof payload !== "object" || !("result" in payload)) {
+    throw new Error(`invalid fork update response (${response.status})`);
+  }
+  return payload;
 }
 
 export const useConfigStore = create<ConfigStoreState>((set, get) => ({
@@ -382,15 +396,21 @@ export const useConfigStore = create<ConfigStoreState>((set, get) => ({
 
   runUpdate: async (params) => {
     set({ updateLoading: true, updateResult: null });
+    const updateMode = getOfficeUpdateMode();
     try {
-      const adapter = await waitForAdapter();
-      const result = await adapter.updateRun(params);
+      const result =
+        updateMode === "fork-capablanca"
+          ? await runForkCapablancaUpdateCheck()
+          : await (async () => {
+              const adapter = await waitForAdapter();
+              return adapter.updateRun(params);
+            })();
       set({ updateResult: result, updateLoading: false });
       return result;
     } catch (err) {
       const result: UpdateRunResult = {
         ok: false,
-        result: { status: "error", mode: "unknown", reason: String(err), steps: [], durationMs: 0 },
+        result: { status: "error", mode: updateMode, reason: String(err), steps: [], durationMs: 0 },
         restart: null,
       };
       set({ updateResult: result, updateLoading: false });

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import type { ConnectionStatus, ThemeMode, PageId } from "@/gateway/types";
-import { formatOfficeNeonLabel, getBranchLabel, getOfficeTitle } from "@/lib/runtime-config";
+import { formatOfficeNeonLabel, getBaseCommit, getBranchLabel, getOfficeTitle } from "@/lib/runtime-config";
 import { useOfficeStore } from "@/store/office-store";
 
 const APP_VERSION = typeof __APP_VERSION__ === "string" ? __APP_VERSION__ : "dev";
@@ -73,6 +73,9 @@ function BrandSection({
   const officeTitle = getOfficeTitle();
   const branchLabel = getBranchLabel();
   const neonLabel = formatOfficeNeonLabel(officeTitle, branchLabel);
+  const baseCommit = getBaseCommit();
+  const uiCommit = APP_COMMIT || "n/a";
+  const baseCommitLabel = baseCommit || "n/a";
 
   return (
     <div className="flex min-w-0 items-center gap-3">
@@ -84,6 +87,18 @@ function BrandSection({
         title={APP_COMMIT ? `${APP_VERSION} · commit ${APP_COMMIT}` : APP_VERSION}
       >
         v{APP_VERSION}{APP_COMMIT && `+${APP_COMMIT}`}
+      </span>
+      <span
+        className="rounded-full bg-gray-100 px-1.5 py-0.5 text-[10px] tabular-nums text-gray-500 dark:bg-gray-800 dark:text-gray-400"
+        title={`Commit base (infra/canon): ${baseCommitLabel}`}
+      >
+        base:{baseCommitLabel}
+      </span>
+      <span
+        className="rounded-full bg-gray-100 px-1.5 py-0.5 text-[10px] tabular-nums text-gray-500 dark:bg-gray-800 dark:text-gray-400"
+        title={`Commit UI cargada: ${uiCommit}`}
+      >
+        ui:{uiCommit}
       </span>
       <div className="ml-4 flex items-center gap-2 rounded bg-zinc-900 px-3 py-1 border border-yellow-500/30 shadow-[0_0_15px_rgba(250,204,21,0.2)]">
         <div className="flex h-5 w-5 items-center justify-center rounded bg-yellow-400 text-[10px] font-bold text-zinc-900 shadow-[0_0_10px_rgba(250,204,21,0.8)]">SU</div>

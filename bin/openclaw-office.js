@@ -7,6 +7,7 @@ import { readFile, writeFile, access, readdir, unlink, mkdir } from "node:fs/pro
 import { resolve, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { networkInterfaces, homedir } from "node:os";
+import { spawn } from "node:child_process";
 import { handlePlatformApiProxy } from "./platform-proxy.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -336,6 +337,178 @@ async function resolveRegistryOfficeIdentity(branchId) {
   };
 }
 
+function commandResult(command, args, startedAt, exitCode, stdout, stderr, error = "") {
+  return {
+    name: command,
+    command: `${command} ${args.join(" ")}`.trim(),
+    durationMs: Date.now() - startedAt,
+    exitCode,
+    stdout: stdout.trim(),
+    stderr: stderr.trim(),
+    error: String(error || "").trim(),
+  };
+}
+
+async function runCommand(command, args, options = {}) {
+  const timeoutMs = options.timeoutMs ?? 30000;
+  const startedAt = Date.now();
+  return await new Promise((resolve) => {
+    let stdout = "";
+    let stderr = "";
+    let settled = false;
+    const child = spawn(command, args, {
+      stdio: ["ignore", "pipe", "pipe"],
+      env: options.env ?? process.env,
+      cwd: options.cwd || process.cwd(),
+    });
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      child.kill("SIGTERM");
+      resolve(commandResult(command, args, startedAt, 124, stdout, stderr, "timeout"));
+    }, timeoutMs);
+
+    child.stdout.on("data", (chunk) => {
+      stdout += String(chunk);
+    });
+    child.stderr.on("data", (chunk) => {
+      stderr += String(chunk);
+    });
+    child.on("error", (err) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve(commandResult(command, args, startedAt, 1, stdout, stderr, err.message || String(err)));
+    });
+    child.on("close", (code) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve(commandResult(command, args, startedAt, Number(code ?? 0), stdout, stderr));
+    });
+  });
+}
+
+async function resolveBaseCommit() {
+  const candidates = [
+    process.env.OPENCLAW_BASE_REPO_DIR,
+    process.env.OPENCLAW_INFRA_REPO_DIR,
+    join(homedir(), "gcloud-office"),
+    join(homedir(), "openclaw-workspaces", "murphy", "gcloud-office"),
+    join(homedir(), "openclaw-workspaces", "cesar", "gcloud-office"),
+  ].filter(Boolean);
+
+  for (const repoDir of candidates) {
+    try {
+      if (!existsSync(join(repoDir, ".git"))) continue;
+      const result = await runCommand("git", ["-C", repoDir, "rev-parse", "--short=7", "HEAD"], {
+        timeoutMs: 5000,
+      });
+      if (result.exitCode === 0 && result.stdout) {
+        return result.stdout;
+      }
+    } catch {
+      // no-op
+    }
+  }
+  return "";
+}
+
+function resolveNodeBranchId() {
+  return String(
+    process.env.OPENCLAW_BRANCH ||
+      process.env.OPENCLAW_PROFILE ||
+      process.env.DELEGATE_BRANCH ||
+      config?.branchKanban?.branchId ||
+      "",
+  ).trim();
+}
+
+function resolveCapablancaServiceCandidates(branchId) {
+  const explicit = String(process.env.OPENCLAW_CAPABLANCA_SERVICE || "").trim();
+  const candidates = [];
+  if (explicit) {
+    candidates.push(explicit);
+  }
+  if (branchId) {
+    candidates.push(`openclaw-capablanca-${branchId}.service`);
+  }
+  candidates.push("openclaw-capablanca.service");
+  return [...new Set(candidates)];
+}
+
+async function triggerForkUpdateCheck() {
+  const startedAt = Date.now();
+  const branchId = resolveNodeBranchId();
+  const rawSteps = [];
+
+  for (const unit of resolveCapablancaServiceCandidates(branchId)) {
+    const result = await runCommand("systemctl", ["--user", "start", unit], { timeoutMs: 120000 });
+    rawSteps.push(result);
+    if (result.exitCode === 0) {
+      return {
+        ok: true,
+        result: {
+          status: "ok",
+          mode: "fork-capablanca",
+          reason: `Capablanca ejecutado via ${unit}`,
+          steps: rawSteps.map((step) => ({
+            name: step.name,
+            command: step.command,
+            durationMs: step.durationMs,
+          })),
+          durationMs: Date.now() - startedAt,
+        },
+        restart: null,
+      };
+    }
+  }
+
+  const scriptPath = String(process.env.OPENCLAW_CAPABLANCA_SCRIPT || "").trim()
+    || join(homedir(), "openclaw-workspaces", "capablanca", "deploy-office.sh");
+  if (existsSync(scriptPath)) {
+    const result = await runCommand("bash", [scriptPath], { timeoutMs: 300000 });
+    rawSteps.push(result);
+    if (result.exitCode === 0) {
+      return {
+        ok: true,
+        result: {
+          status: "ok",
+          mode: "fork-capablanca",
+          reason: `Capablanca ejecutado via script ${scriptPath}`,
+          steps: rawSteps.map((step) => ({
+            name: step.name,
+            command: step.command,
+            durationMs: step.durationMs,
+          })),
+          durationMs: Date.now() - startedAt,
+        },
+        restart: null,
+      };
+    }
+  }
+
+  const lastError = rawSteps.length > 0 ? rawSteps[rawSteps.length - 1] : null;
+  return {
+    ok: false,
+    result: {
+      status: "error",
+      mode: "fork-capablanca",
+      reason:
+        lastError?.stderr ||
+        lastError?.error ||
+        "No se pudo ejecutar el update del fork via Capablanca.",
+      steps: rawSteps.map((step) => ({
+        name: step.name,
+        command: step.command,
+        durationMs: step.durationMs,
+      })),
+      durationMs: Date.now() - startedAt,
+    },
+    restart: null,
+  };
+}
+
 // --- Config resolution ---
 
 async function resolveConfig() {
@@ -376,6 +549,9 @@ async function resolveConfig() {
 // --- HTTP Server ---
 
 const config = await resolveConfig();
+const baseCommit = await resolveBaseCommit();
+const officeUpdateMode =
+  process.env.OPENCLAW_UPDATE_MODE === "gateway" ? "gateway" : "fork-capablanca";
 
 const runtimeConfig = JSON.stringify({
   gatewayUrl: config.gatewayUrl,
@@ -383,6 +559,8 @@ const runtimeConfig = JSON.stringify({
   gatewayWsPath: "/gateway-ws",
   officeTitle: config.officeTitle,
   branchLabel: config.branchLabel,
+  baseCommit,
+  officeUpdateMode,
 });
 const configScript = `<script>window.__OPENCLAW_CONFIG__=${runtimeConfig};</script>`;
 const gatewayWsPrefixes = new Set(["/gateway-ws", "/api/gateway/ws"]);
@@ -404,7 +582,11 @@ function nodeGuidePath() {
   const fromEnv = process.env.OPENCLAW_NODE_GUIDE_PATH;
   if (fromEnv) return fromEnv;
   const profile =
-    process.env.OPENCLAW_PROFILE || process.env.DELEGATE_BRANCH || "default";
+    process.env.OPENCLAW_PROFILE ||
+    process.env.OPENCLAW_BRANCH ||
+    process.env.DELEGATE_BRANCH ||
+    config.branchKanban.branchId ||
+    "default";
   return join(homedir(), `.openclaw-${profile}`, "dashboard", "node-dashboard.html");
 }
 
@@ -963,6 +1145,39 @@ const server = createServer(async (req, res) => {
       sendJson(res, 500, { ok: false, error: String(err) });
       return;
     }
+  }
+
+  if (pathname === "/api/node/fork-update-check") {
+    if (req.method === "OPTIONS") {
+      res.writeHead(204, {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      });
+      res.end();
+      return;
+    }
+    if (req.method !== "POST") {
+      sendJson(res, 405, { ok: false, error: "Method not allowed" });
+      return;
+    }
+    try {
+      const result = await triggerForkUpdateCheck();
+      sendJson(res, result.ok ? 200 : 500, result);
+    } catch (err) {
+      sendJson(res, 500, {
+        ok: false,
+        result: {
+          status: "error",
+          mode: "fork-capablanca",
+          reason: String(err),
+          steps: [],
+          durationMs: 0,
+        },
+        restart: null,
+      });
+    }
+    return;
   }
 
   if (pathname === "/kanban") {
